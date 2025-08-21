@@ -1,0 +1,98 @@
+<mvc:View
+    controllerName="project2.controller.DetailView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout.form">
+ 
+    <Page id="_IDGenPage" title="Product Detail" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <Title id="_IDGenTitle3" text="{i18n>detailHeader}" level="H2" class="myTitlePadding"/>
+            <layout:SimpleForm id="_IDGenVerticalLayout" 
+            editable="false"
+            columnsL="2"
+            columnsM="2"
+            labelSpanM="1"
+            labelSpanL="1"  
+            >
+                    <Label id="_IDGenLabel" text="{i18n>labelForProduct}" design="Bold" />
+                    <Input id="_IDGenText" value="{ProductID}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel1" text="{i18n>labelForProduct2}" design="Bold" />
+                    <Input id="_IDGenText1" value="{ProductName}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel4" text="{i18n>labelForProduct3}" design="Bold" />
+                    <Input id="_IDGenText4" value="{QuantityPerUnit}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel5" text="{i18n>labelForProduct4}" design="Bold" />
+                    <Input id="_IDGenText5" value="{UnitPrice}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel6" text="{i18n>labelForProduct5}" design="Bold" />
+                    <Input id="_IDGenText6" value="{UnitsInStock}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel7" text="{i18n>labelForProduct6}" design="Bold" />
+                    <Input id="_IDGenText7" value="{UnitsOnOrder}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel8" text="{i18n>labelForProduct7}" design="Bold" />
+                    <Input id="_IDGenText8" value="{ReorderLevel}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel9" text="{i18n>labelForProduct8}" design="Bold" />
+                    <Input id="_IDGenText9" value="{Discontinued}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    </layout:SimpleForm>
+                    <!-- kategori özellikleri burada -->
+                    <Title id="_IDGenTitle" text="{i18n>detailHeader2}" level="H2" class="myTitlePadding"/>
+                    
+                    <layout:SimpleForm id="_IDGenVerticalLayout2" 
+                    editable="false"
+                    columnsL="2"
+                    columnsM="2"
+                    labelSpanM="1"
+                    labelSpanL="1"  
+                    >
+                        <Label id="_IDGenLabel3" text="{i18n>labelForCategory}" design="Bold" />
+                        <Input id="_IDGenText3" value="{Category/CategoryName}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                        <Label id="_IDGenLabel32" text="{i18n>labelForCategory2}" design="Bold" />
+                        <Input id="_IDGenText33" value="{Category/Description}" class="sapUiSmallMarginBegin"  editable="false"/>
+                        <Label id="_IDGenLabel33" text="{i18n>labelForCategoryFragment}" design="Bold"></Label>
+                        <Button id="_IDGenButton2" press="onOpenPictureFragment" text="Show"  class="sapUiSmallMarginBegin"></Button>
+                    </layout:SimpleForm>
+                    <!-- supplier özellikleri -->
+                    <Title id="_IDGenTitle1" text="{i18n>detailHeader3}" level="H2" class="myTitlePadding"/>
+
+                    <layout:SimpleForm id="_IDGenVerticalLayout3" 
+                    editable="false"
+                    columnsL="2"
+                    columnsM="2"
+                    labelSpanM="1"
+                    labelSpanL="1"  
+                    >
+
+                    <Label id="_IDGenLabel2" text="{i18n>labelForSupplier}" design="Bold" />
+                    <Input id="_IDGenText2" value="{Supplier/CompanyName}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel12" text="{i18n>labelForSupplier2}"  design="Bold"/>
+                    <Input id="_IDGenText11" value="{Supplier/ContactName}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel13" text="{i18n>labelForSupplier3}"  design="Bold"/>
+                    <Input id="_IDGenText12" value="{Supplier/ContactTitle}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel14" text="{i18n>labelForSupplier4}"  design="Bold"/>
+                    <Input id="_IDGenText13" value="{Supplier/Address}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel15" text="{i18n>labelForSupplier5}"  design="Bold"/>
+                    <Input id="_IDGenText14" value="{Supplier/City}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel17" text="{i18n>labelForSupplier6}"  design="Bold"/>
+                    <Input id="_IDGenText16" value="{Supplier/PostalCode}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel18" text="{i18n>labelForSupplier7}"  design="Bold"/>
+                    <Input id="_IDGenText17" value="{Supplier/Country}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+                    <Label id="_IDGenLabel19" text="{i18n>labelForSupplier8}"  design="Bold"/>
+                    <Input id="_IDGenText18" value="{Supplier/Phone}" class="sapUiSmallMarginBegin"  editable="false"/>
+
+            </layout:SimpleForm>
+        </content>
+    </Page>
+</mvc:View>

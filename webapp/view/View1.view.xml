@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="project2.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="_IDGenPage1" title="{i18n>mainPageTitle}">
+        <subHeader>
+           <Toolbar id="_IDGenToolbar">
+        <SearchField
+            id="searchField"
+            width="55%"
+            placeholder="{i18n>mainSearchPlaceHolder}"
+            liveChange="onSearch" />
+        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+        <Button id="_IDGenButton"
+            text="{i18n>sortButtonText}"
+            press="onSortPrice" 
+            width="15%"/>
+        <Button id="_IDGenButton1" text="{i18n>groupButtonText}" press=".onGroupByCategory" width="15%"/>
+        <Button id="_IDGenButton4" text="Download as XLS" press=".onExportToExcel" width="15%"/>
+
+    </Toolbar>
+        </subHeader>
+
+        <content>
+            <List
+                id="productList"
+                items="{/Products}"> 
+                <StandardListItem id="_IDGenStandardListItem" 
+                    title="{ProductName}"
+                    description="{QuantityPerUnit}"
+                    info="{UnitPrice}"
+                    infoState="{= ${UnitPrice} > 20 ? 'Success' : 'Warning' }" 
+                    type="Active"
+                    press="onItemPress"
+                    />
+            </List>
+        </content>
+    </Page>
+</mvc:View>

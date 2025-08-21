@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog 
+        id="pictureDialog" 
+        title="Category Picture">
+        
+        <content>
+          <Image 
+    id="_IDGenImage" 
+    src="{
+    path: 'cat>/Category/Picture',
+    formatter: '.formatPicture'
+    }"
+    width="150px" 
+    height="150px"
+    class="centerImage"
+    />
+     
+        </content>
+        
+        <buttons>
+            <Button id="_IDGenButton3" text="Close" press="onClosePictureFragment"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

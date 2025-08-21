@@ -1,0 +1,12 @@
+/* Enter your custom styles here */
+.myTitlePadding {
+    padding-left: 30px;
+    padding:10px;
+    width: 150px;
+}
+.centerImage {
+  display: block;       
+  margin-left: auto;   
+  margin-right: auto;   
+  text-align: center;   
+}
