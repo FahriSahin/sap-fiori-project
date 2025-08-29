@@ -1,0 +1,29 @@
+<mvc:View
+  controllerName="project2.controller.Main"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.f"
+  xmlns:cards="sap.f.cards">
+
+  <Page id="pageMain" title="Main Page">
+    <content>
+      <HBox id="hboxMain" alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+
+        <!-- Product Card -->
+        <f:Card id="cardProduct" width="400px" class="sapUiLargeMarginEnd sapUiShadow">
+          <f:header>
+            <cards:Header id="headerProduct" title="Products" subtitle="Product list"/>
+          </f:header>
+        </f:Card>
+
+        <!-- Employee Card -->
+        <f:Card id="cardEmployee" width="400px" class="sapUiShadow">
+          <f:header>
+            <cards:Header id="headerEmployee" title="Employees" subtitle="Employee list"/>
+          </f:header>
+        </f:Card>
+
+      </HBox>
+    </content>
+  </Page>
+</mvc:View>

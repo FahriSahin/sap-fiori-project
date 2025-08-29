@@ -1,0 +1,65 @@
+<mvc:View
+  controllerName="project2.controller.Employees"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core">
+
+  <Page id="pageEmployees" title="Employees Page">
+    <content>
+      <VBox id="vboxEmployees" class="sapUiSmallMargin">
+
+        <!-- Toolbar -->
+        <Toolbar id="_IDGenToolbar1">
+
+          <!-- Search Field -->
+          <SearchField
+            id="searchEmployee"
+            placeholder="Search Employee..."
+            liveChange=".onSearchEmployee"
+            width="50%"/>
+
+          <!-- Age Filter Dropdown -->
+          <Select id="ageFilterSelect" change=".onAgeFilterChange" width="40%">
+            <items>
+              <core:Item id="_IDGenItem1" key="20" text="20+"/>
+              <core:Item id="_IDGenItem2" key="30" text="30+"/>
+              <core:Item id="_IDGenItem3" key="40" text="40+"/>
+              <core:Item id="_IDGenItem4" key="50" text="50+"/>
+            </items>
+          </Select>
+
+          <ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+
+          <!-- Sort Button -->
+          <Button
+            id="btnSortEmployee"
+            icon="sap-icon://sort"
+            text="Sort by Title"
+            press=".onSortByTitle"/>
+
+          <!-- Download Button -->
+          <Button
+            id="btnDownloadEmployee"
+            icon="sap-icon://excel-attachment"
+            text="Export"
+            press=".onExportToExcel"/>
+        </Toolbar>
+
+        <!-- Employees List -->
+        <List
+          id="employeeList"
+          headerText="Employee List"
+          items="{EmployeesJSON>/Employees}">
+
+          <StandardListItem
+            id="employeeItem"
+            title="{EmployeesJSON>FirstName} {EmployeesJSON>LastName}"
+            description="{EmployeesJSON>Title}"
+            type="Navigation"
+            press=".onEmployeePress"/>
+        </List>
+
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

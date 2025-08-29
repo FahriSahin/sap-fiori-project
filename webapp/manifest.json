@@ -90,19 +90,42 @@
   },
   "routes": [
     {
-      "name": "RouteView1",
+      "name": "RouteView0",
       "pattern": ":?query:",
       "target": [
+        "TargetView0"
+      ]
+    },
+    {
+      "name": "RouteView1",
+      "pattern": "Product",
+      "target": [
         "TargetView1"
+      ]
+    },
+    {
+      "name": "RouteView3",
+      "pattern": "Employee",
+      "target": [
+        "TargetViewEmployee"
       ]
     },
     {
       "name":"DetailView",
       "pattern": "Product/{ProductID}",
       "target" : ["TargetView2"]
+    },
+    {
+      "name":"EmployeeDetail",
+      "pattern": "EmployeeDetail/{EmployeeID}",
+      "target" : ["EmployeeDetail"]
     }
   ],
   "targets": {
+    "TargetView0": {
+      "id": "Main",
+      "name": "Main"
+    },
     "TargetView1": {
       "id": "View1",
       "name": "View1"
@@ -110,6 +133,14 @@
     "TargetView2":{
       "id":"DetailView",
       "name": "DetailView"
+    },
+    "TargetViewEmployee":{
+      "id":"Employees",
+      "name": "Employees"
+    },
+    "EmployeeDetail":{
+      "id":"EmployeeDetail",
+      "name": "EmployeeDetail"
     }
   }
 },
