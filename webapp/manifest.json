@@ -119,6 +119,11 @@
       "name":"EmployeeDetail",
       "pattern": "EmployeeDetail/{EmployeeID}",
       "target" : ["EmployeeDetail"]
+    },
+     {
+      "name":"TablePage",
+      "pattern": "TablePage",
+      "target" : ["TablePage"]
     }
   ],
   "targets": {
@@ -141,6 +146,10 @@
     "EmployeeDetail":{
       "id":"EmployeeDetail",
       "name": "EmployeeDetail"
+    },
+    "TablePage":{
+      "id":"TablePage",
+      "name": "TablePage"
     }
   }
 },

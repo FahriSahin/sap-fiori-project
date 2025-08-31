@@ -1,0 +1,39 @@
+<mvc:View
+  controllerName="project2.controller.TablePage"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:viz.data="sap.viz.ui5.data"
+  xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+
+  <Page id="_IDGenPage2" title="Monthly Sales Chart">
+    <content>
+      <viz:VizFrame
+        id="salesVizFrame"
+        uiConfig="{applicationSet: 'fiori'}"
+        vizType="line"
+        width="100%"
+        height="500px">
+
+        <!-- Dataset aggregation -->
+        <viz:dataset>
+          <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{salesModel>/SalesByMonth}">
+            <viz.data:dimensions>
+              <viz.data:DimensionDefinition id="_IDGenDimensionDefinition" name="Month" value="{salesModel>month}" />
+            </viz.data:dimensions>
+            <viz.data:measures>
+              <viz.data:MeasureDefinition id="_IDGenMeasureDefinition" name="Sales" value="{salesModel>Sales}" />
+            </viz.data:measures>
+          </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <!-- Feeds aggregation -->
+        <viz:feeds>
+          <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="categoryAxis" type="Dimension" values="Month" />
+          <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="valueAxis" type="Measure" values="Sales" />
+        </viz:feeds>
+
+      </viz:VizFrame>
+    </content>
+  </Page>
+</mvc:View>

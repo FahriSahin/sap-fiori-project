@@ -14,6 +14,11 @@ sap.ui.define([
       this.byId("cardEmployee").attachBrowserEvent("click", function() {
         this.getOwnerComponent().getRouter().navTo("RouteView3");
       }.bind(this));
+
+      // Table Card tıklama
+      this.byId("cardTable").attachBrowserEvent("click", function() {
+        this.getOwnerComponent().getRouter().navTo("TablePage");
+      }.bind(this));
     }
   });
 });
