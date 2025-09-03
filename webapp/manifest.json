@@ -63,6 +63,10 @@
           "bundleName": "project2.i18n.i18n"
         }
       },
+      "Users": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/Users.json"
+      },
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -76,83 +80,96 @@
         }
       ]
     },
-   "routing": {
-  "config": {
-    "routerClass": "sap.m.routing.Router",
-    "controlAggregation": "pages",
-    "controlId": "app",
-    "transition": "slide",
-    "type": "View",
-    "viewType": "XML",
-    "path": "project2.view",
-    "async": true,
-    "viewPath": "project2.view"
-  },
-  "routes": [
-    {
-      "name": "RouteView0",
-      "pattern": ":?query:",
-      "target": [
-        "TargetView0"
-      ]
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "project2.view",
+        "async": true,
+        "viewPath": "project2.view"
+      },
+      "routes": [
+        {
+          "name": "Login",
+          "pattern": "",
+          "target": "Login",
+          "default": true
+        },
+        {
+          "name": "Register",
+          "pattern": "Register",
+          "target": "Register"
+        },
+        {
+          "name": "Main",
+          "pattern": "main",
+          "target": "TargetView0"
+        },
+        {
+          "name": "RouteView1",
+          "pattern": "Product",
+          "target": ["TargetView1"]
+        },
+        {
+          "name": "RouteView3",
+          "pattern": "Employee",
+          "target": ["TargetViewEmployee"]
+        },
+        {
+          "name": "DetailView",
+          "pattern": "Product/{ProductID}",
+          "target": ["TargetView2"]
+        },
+        {
+          "name": "EmployeeDetail",
+          "pattern": "EmployeeDetail/{EmployeeID}",
+          "target": ["EmployeeDetail"]
+        },
+        {
+          "name": "TablePage",
+          "pattern": "TablePage",
+          "target": ["TablePage"]
+        }
+      ],
+      "targets": {
+        "Login": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "Register": {
+          "id": "Register",
+          "name": "Register"
+        },
+        "TargetView0": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        },
+        "TargetView2": {
+          "id": "DetailView",
+          "name": "DetailView"
+        },
+        "TargetViewEmployee": {
+          "id": "Employees",
+          "name": "Employees"
+        },
+        "EmployeeDetail": {
+          "id": "EmployeeDetail",
+          "name": "EmployeeDetail"
+        },
+        "TablePage": {
+          "id": "TablePage",
+          "name": "TablePage"
+        }
+      }
     },
-    {
-      "name": "RouteView1",
-      "pattern": "Product",
-      "target": [
-        "TargetView1"
-      ]
-    },
-    {
-      "name": "RouteView3",
-      "pattern": "Employee",
-      "target": [
-        "TargetViewEmployee"
-      ]
-    },
-    {
-      "name":"DetailView",
-      "pattern": "Product/{ProductID}",
-      "target" : ["TargetView2"]
-    },
-    {
-      "name":"EmployeeDetail",
-      "pattern": "EmployeeDetail/{EmployeeID}",
-      "target" : ["EmployeeDetail"]
-    },
-     {
-      "name":"TablePage",
-      "pattern": "TablePage",
-      "target" : ["TablePage"]
-    }
-  ],
-  "targets": {
-    "TargetView0": {
-      "id": "Main",
-      "name": "Main"
-    },
-    "TargetView1": {
-      "id": "View1",
-      "name": "View1"
-    },
-    "TargetView2":{
-      "id":"DetailView",
-      "name": "DetailView"
-    },
-    "TargetViewEmployee":{
-      "id":"Employees",
-      "name": "Employees"
-    },
-    "EmployeeDetail":{
-      "id":"EmployeeDetail",
-      "name": "EmployeeDetail"
-    },
-    "TablePage":{
-      "id":"TablePage",
-      "name": "TablePage"
-    }
-  }
-},
     "rootView": {
       "viewName": "project2.view.App",
       "type": "XML",

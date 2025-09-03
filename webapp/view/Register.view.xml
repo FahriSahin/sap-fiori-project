@@ -1,0 +1,44 @@
+<mvc:View
+    controllerName="project2.controller.Register"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    class="sapUiSizeCompact">
+
+    <Page id="_IDGenPage5" title="Register">
+        <content>
+            <VBox id="_IDGenVBox"
+                class="sapUiContentPadding sapUiSmallMargin"
+                justifyContent="Center"
+                alignItems="Center">
+
+                <Input
+                    id="usernameInput2"
+                    placeholder="Username"
+                    class="sapUiMediumMarginBottom sapUiLargeHeight"
+                    width="300px" />
+
+                <Input
+                    id="passwordInput2"
+                    type="Password"
+                    placeholder="Password"
+                    class="sapUiMediumMarginBottom sapUiLargeHeight"
+                    width="300px" />
+
+                <Button id="_IDGenButton7"
+                    text="Register"
+                    type="Emphasized"
+                    class="sapUiMediumMarginBottom"
+                    width="300px"
+                    press=".onRegister" />
+
+                <Button id="_IDGenButton8"
+                    text="Go to Login"
+                    type="Transparent"
+                    width="300px"
+                    press=".onGoToLogin" />
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

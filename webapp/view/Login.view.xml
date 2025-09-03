@@ -1,0 +1,45 @@
+<mvc:View
+  controllerName="project2.controller.Login"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <Page id="_IDGenPage3" title="Login">
+    <content>
+      <VBox id="_IDGenVBox2"
+        class="sapUiContentCenter sapUiSmallMargin"
+        width="100%"
+        justifyContent="Center"
+        alignItems="Center"
+        renderType="Bare">
+
+        <Input
+          id="usernameInput"
+          placeholder="Username"
+          class="sapUiMediumMarginBottom sapUiLargeHeight"
+          width="300px" />
+
+        <Input
+          id="passwordInput"
+          placeholder="Password"
+          type="Password"
+          class="sapUiMediumMarginBottom sapUiLargeHeight"
+          width="300px" />
+
+        <Button id="_IDGenButton5"
+          text="Login"
+          class="sapUiMediumMarginBottom sapUiLargeHeight"
+          width="300px"
+          press=".onLogin" />
+
+        <Button id="_IDGenButton6"
+          text="Go to Register"
+          type="Emphasized"
+          class="sapUiLargeHeight"
+          width="300px"
+          press=".onGoToRegister" />
+
+      </VBox>
+    </content>
+  </Page>
+
+</mvc:View>
