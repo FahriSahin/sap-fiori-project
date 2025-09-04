@@ -1,19 +1,19 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/m/MessageToast",
-  "sap/ui/model/json/JSONModel"
-], function(Controller, MessageToast, JSONModel) {
+  "sap/m/MessageToast"
+], function(Controller, MessageToast) {
   "use strict";
 
   return Controller.extend("project2.controller.Register", {
 
     onInit: function() {
-      const oUsersModel = new JSONModel({
-        Users: [
+      // Eğer Users yoksa, varsayılan admin kullanıcısı ekle
+      if (!localStorage.getItem("Users")) {
+        const defaultUsers = [
           { username: "admin", password: "1234" }
-        ]
-      });
-      this.getView().setModel(oUsersModel, "Users");
+        ];
+        localStorage.setItem("Users", JSON.stringify(defaultUsers));
+      }
     },
 
     onRegister: function() {
@@ -25,17 +25,18 @@ sap.ui.define([
         return;
       }
 
-      const oUsersModel = this.getView().getModel("Users");
-      const aUsers = oUsersModel.getProperty("/Users") || [];
+      // LocalStorage'dan kullanıcıları al
+      const aUsers = JSON.parse(localStorage.getItem("Users")) || [];
 
+      // Kullanıcı adı daha önce alınmış mı kontrol et
       if (aUsers.find(u => u.username === sUsername)) {
         MessageToast.show("Bu kullanıcı adı zaten var!");
         return;
       }
 
-      // Modeli güncelle
+      // Yeni kullanıcı ekle
       aUsers.push({ username: sUsername, password: sPassword });
-      oUsersModel.setProperty("/Users", aUsers);
+      localStorage.setItem("Users", JSON.stringify(aUsers));
 
       MessageToast.show("Kayıt başarılı! Şimdi login olabilirsiniz.");
       this.getOwnerComponent().getRouter().navTo("Login");

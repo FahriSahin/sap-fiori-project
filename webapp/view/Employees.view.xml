@@ -4,7 +4,7 @@
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:core="sap.ui.core">
 
-  <Page id="pageEmployees" title="Employees Page">
+  <Page id="pageEmployees" title="{i18n>employeesPage}">
     <content>
       <VBox id="vboxEmployees" class="sapUiSmallMargin">
 
@@ -14,7 +14,7 @@
           <!-- Search Field -->
           <SearchField
             id="searchEmployee"
-            placeholder="Search Employee..."
+            placeholder="{i18n>searchEmployeePlaceholder}"
             liveChange=".onSearchEmployee"
             width="50%"/>
 
@@ -34,21 +34,21 @@
           <Button
             id="btnSortEmployee"
             icon="sap-icon://sort"
-            text="Sort by Title"
+            text="{i18n>sortByTitle}"
             press=".onSortByTitle"/>
 
           <!-- Download Button -->
           <Button
             id="btnDownloadEmployee"
             icon="sap-icon://excel-attachment"
-            text="Export"
+            text="{i18n>export}"
             press=".onExportToExcel"/>
         </Toolbar>
 
         <!-- Employees List -->
         <List
           id="employeeList"
-          headerText="Employee List"
+          headerText="{i18n>employeeListHeader}"
           items="{EmployeesJSON>/Employees}">
 
           <StandardListItem

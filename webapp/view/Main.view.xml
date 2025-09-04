@@ -5,7 +5,7 @@
   xmlns:f="sap.f"
   xmlns:cards="sap.f.cards">
 
-  <Page id="pageMain" title="Main Page">
+  <Page id="pageMain" title="{i18n>mainPage}">
     <content>
       <FlexBox
         id="flexMain"
@@ -17,21 +17,27 @@
         <!-- Product Card -->
         <f:Card id="cardProduct" width="300px" class="sapUiShadow cardCSS">
           <f:header>
-            <cards:Header id="headerProduct" title="Products" subtitle="Product list"/>
+            <cards:Header id="headerProduct" 
+              title="{i18n>productsTitle}" 
+              subtitle="{i18n>productsSubtitle}"/>
           </f:header>
         </f:Card>
 
         <!-- Employee Card -->
         <f:Card id="cardEmployee" width="300px" class="sapUiShadow cardCSS">
           <f:header>
-            <cards:Header id="headerEmployee" title="Employees" subtitle="Employee list"/>
+            <cards:Header id="headerEmployee" 
+              title="{i18n>employeesTitle}" 
+              subtitle="{i18n>employeesSubtitle}"/>
           </f:header>
         </f:Card>
 
         <!-- Table Card -->
         <f:Card id="cardTable" width="300px" class="sapUiShadow cardCSS">
           <f:header>
-            <cards:Header id="headerTable" title="Table" subtitle="Table Page"/>
+            <cards:Header id="headerTable" 
+              title="{i18n>tableTitle}" 
+              subtitle="{i18n>tableSubtitle}"/>
           </f:header>
         </f:Card>
 

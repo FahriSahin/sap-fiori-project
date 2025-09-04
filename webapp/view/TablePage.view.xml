@@ -6,7 +6,7 @@
   xmlns:viz.data="sap.viz.ui5.data"
   xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
 
-  <Page id="_IDGenPage2" title="Monthly Sales Chart">
+  <Page id="_IDGenPage2" title="{i18n>monthlySalesChart}">
     <content>
       <viz:VizFrame
         id="salesVizFrame"
@@ -19,18 +19,18 @@
         <viz:dataset>
           <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{salesModel>/SalesByMonth}">
             <viz.data:dimensions>
-              <viz.data:DimensionDefinition id="_IDGenDimensionDefinition" name="Month" value="{salesModel>month}" />
+              <viz.data:DimensionDefinition id="_IDGenDimensionDefinition" name="{i18n>month}" value="{salesModel>month}" />
             </viz.data:dimensions>
             <viz.data:measures>
-              <viz.data:MeasureDefinition id="_IDGenMeasureDefinition" name="Sales" value="{salesModel>Sales}" />
+              <viz.data:MeasureDefinition id="_IDGenMeasureDefinition" name="{i18n>sales}" value="{salesModel>Sales}" />
             </viz.data:measures>
           </viz.data:FlattenedDataset>
         </viz:dataset>
 
         <!-- Feeds aggregation -->
         <viz:feeds>
-          <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="categoryAxis" type="Dimension" values="Month" />
-          <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="valueAxis" type="Measure" values="Sales" />
+          <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="categoryAxis" type="Dimension" values="{i18n>month}" />
+          <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="valueAxis" type="Measure" values="{i18n>sales}" />
         </viz:feeds>
 
       </viz:VizFrame>

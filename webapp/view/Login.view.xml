@@ -1,9 +1,11 @@
 <mvc:View
   controllerName="project2.controller.Login"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+>
 
-  <Page id="_IDGenPage3" title="Login">
+  <Page id="_IDGenPage3" title="{i18n>loginPage}">
     <content>
       <VBox id="_IDGenVBox2"
         class="sapUiContentCenter sapUiSmallMargin"
@@ -14,29 +16,35 @@
 
         <Input
           id="usernameInput"
-          placeholder="Username"
+          placeholder="{i18n>usernamePlaceholder}"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
           width="300px" />
 
         <Input
           id="passwordInput"
-          placeholder="Password"
+          placeholder="{i18n>passwordPlaceholder}"
           type="Password"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
           width="300px" />
 
         <Button id="_IDGenButton5"
-          text="Login"
+          text="{i18n>loginButton}"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
           width="300px"
           press=".onLogin" />
 
         <Button id="_IDGenButton6"
-          text="Go to Register"
+          text="{i18n>goToRegisterButton}"
           type="Emphasized"
           class="sapUiLargeHeight"
           width="300px"
           press=".onGoToRegister" />
+
+          <Select id="languageSelect" change=".onLanguageChange" width="300px" class="sapUiMediumMarginBottom">
+              <core:Item id="_IDGenItem5" key="en" text="English"/>
+              <core:Item id="_IDGenItem6" key="tr" text="Türkçe"/>
+          </Select>
+
 
       </VBox>
     </content>

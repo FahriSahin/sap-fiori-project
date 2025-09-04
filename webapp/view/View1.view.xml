@@ -6,20 +6,25 @@
     <Page id="_IDGenPage1" title="{i18n>mainPageTitle}">
         <subHeader>
            <Toolbar id="_IDGenToolbar">
-        <SearchField
-            id="searchField"
-            width="55%"
-            placeholder="{i18n>mainSearchPlaceHolder}"
-            liveChange="onSearch" />
-        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-        <Button id="_IDGenButton"
-            text="{i18n>sortButtonText}"
-            press="onSortPrice" 
-            width="15%"/>
-        <Button id="_IDGenButton1" text="{i18n>groupButtonText}" press=".onGroupByCategory" width="15%"/>
-        <Button id="_IDGenButton4" text="Download as XLS" press=".onExportToExcel" width="15%"/>
-
-    </Toolbar>
+                <SearchField
+                    id="searchField"
+                    width="55%"
+                    placeholder="{i18n>mainSearchPlaceHolder}"
+                    liveChange="onSearch" />
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Button id="_IDGenButton"
+                    text="{i18n>sortButtonText}"
+                    press="onSortPrice" 
+                    width="15%"/>
+                <Button id="_IDGenButton1" 
+                    text="{i18n>groupButtonText}" 
+                    press=".onGroupByCategory" 
+                    width="15%"/>
+                <Button id="_IDGenButton4" 
+                    text="{i18n>downloadButtonText}" 
+                    press=".onExportToExcel" 
+                    width="15%"/>
+            </Toolbar>
         </subHeader>
 
         <content>

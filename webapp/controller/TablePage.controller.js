@@ -12,7 +12,22 @@ sap.ui.define([
       oODataModel.read("/Summary_of_Sales_by_Years", {
         success: function(oData) {
           // month ve Sales değerlerini uygun formatta JSON modeline aktar
-          const monthNames = ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+          // i18n'den ay isimlerini al
+const monthNames = [
+    this.getView().getModel("i18n").getProperty("monthJan"),
+    this.getView().getModel("i18n").getProperty("monthFeb"),
+    this.getView().getModel("i18n").getProperty("monthMar"),
+    this.getView().getModel("i18n").getProperty("monthApr"),
+    this.getView().getModel("i18n").getProperty("monthMay"),
+    this.getView().getModel("i18n").getProperty("monthJun"),
+    this.getView().getModel("i18n").getProperty("monthJul"),
+    this.getView().getModel("i18n").getProperty("monthAug"),
+    this.getView().getModel("i18n").getProperty("monthSep"),
+    this.getView().getModel("i18n").getProperty("monthOct"),
+    this.getView().getModel("i18n").getProperty("monthNov"),
+    this.getView().getModel("i18n").getProperty("monthDec")
+];
+
           
           const aSales = oData.results.map(item => {
             const date = new Date(item.ShippedDate); // ShippedDate alanı
@@ -28,9 +43,15 @@ sap.ui.define([
           console.log("Sales by Month:", aSales);
         }.bind(this),
         error: function(oError) {
+          MessageToast.show(this.getView().getModel("i18n").getProperty("salesLoadError"));
           console.error("Failed to load sales:", oError);
-        }
+        }.bind(this)
       });
+
+      // Page title için i18n
+      this.getView().byId("_IDGenPage2").setTitle(
+        this.getView().getModel("i18n").getProperty("monthlySalesTitle")
+      );
     }
   });
 });

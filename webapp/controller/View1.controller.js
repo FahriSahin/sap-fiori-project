@@ -2,44 +2,44 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-   "sap/ui/model/Sorter",
-   "sap/ui/export/Spreadsheet",
-], function(Controller, Filter, FilterOperator, Sorter ,Spreadsheet) {
+  "sap/ui/model/Sorter",
+  "sap/ui/export/Spreadsheet",
+  "sap/m/MessageToast"
+], function(Controller, Filter, FilterOperator, Sorter, Spreadsheet, MessageToast) {
   "use strict";
 
   return Controller.extend("project2.controller.View1", {
-  onInit: function() {
-    const oModel = this.getOwnerComponent().getModel(); 
-    this.getView().setModel(oModel); // Products modeli
+    onInit: function() {
+      const oModel = this.getOwnerComponent().getModel(); 
+      this.getView().setModel(oModel); // Products modeli
 
-    // Products
-    oModel.read("/Products", {
+      const i18n = this.getView().getModel("i18n");
+
+      // Products
+      oModel.read("/Products", {
         success: function(oData) {
-            console.log("Products:", oData.results);
+          console.log(i18n.getProperty("logProducts"), oData.results);
         },
         error: function(oError) {
-            console.error("Ürünler yüklenemedi:", oError);
+          console.error(i18n.getProperty("errProductsLoad"), oError);
         }
-    });
+      });
 
-    // Categories
-    oModel.read("/Categories", {
+      // Categories
+      oModel.read("/Categories", {
         success: function(oData) {
-            console.log("Categories:", oData.results);
-
-            // JSON model oluşturup view'a set et
-            const oCategoryModel = new sap.ui.model.json.JSONModel(oData);
-            this.getView().setModel(oCategoryModel, "categories");
+          console.log(i18n.getProperty("logCategories"), oData.results);
+          const oCategoryModel = new sap.ui.model.json.JSONModel(oData);
+          this.getView().setModel(oCategoryModel, "categories");
         }.bind(this),
         error: function(oError) {
-            console.error("Kategoriler yüklenemedi:", oError);
+          console.error(i18n.getProperty("errCategoriesLoad"), oError);
         }
-    });
-},
+      });
+    },
 
-    // SearchField için filtreleme fonksiyonu
     onSearch: function(oEvent) {
-      const sQuery = oEvent.getParameter("newValue"); // LiveChange event kullanıyorsan newValue
+      const sQuery = oEvent.getParameter("newValue");
       const oList = this.getView().byId("productList");
       const oBinding = oList.getBinding("items");
 
@@ -51,106 +51,84 @@ sap.ui.define([
       }
     },
 
-        onSortPrice: function() {
-        const oList = this.byId("productList");
-        const oBinding = oList.getBinding("items");
+    onSortPrice: function() {
+      const oList = this.byId("productList");
+      const oBinding = oList.getBinding("items");
+      const aSorters = oBinding.aSorters || [];
+      let bDescending = false;
 
-        // Mevcut sorters
-        const aSorters = oBinding.aSorters || [];
+      if (aSorters.length > 0 && aSorters[0].sPath === "UnitPrice") {
+        bDescending = !aSorters[0].bDescending;
+      }
 
-        // Daha önce ascending mi descending mi kontrol et
-        let bDescending = false;
-        if (aSorters.length > 0 && aSorters[0].sPath === "UnitPrice") {
-            bDescending = !aSorters[0].bDescending;
-        }
-
-        // Yeni sorter ekle
-        const oSorter = new sap.ui.model.Sorter("UnitPrice", bDescending);
-        oBinding.sort(oSorter);
-        },
+      const oSorter = new Sorter("UnitPrice", bDescending);
+      oBinding.sort(oSorter);
+    },
 
     onGroupByCategory: function() {
-    const oList = this.byId("productList");
-    const oBinding = oList.getBinding("items");
+      const oList = this.byId("productList");
+      const oBinding = oList.getBinding("items");
+      const oCategoryModel = this.getView().getModel("categories"); 
+      const aCategories = oCategoryModel.getData().results;
 
-    // Categories modelini al 
-    const oCategoryModel = this.getView().getModel("categories"); 
-    const aCategories = oCategoryModel.getData().results;
-
-    // Sorter oluştur
-    const oSorter = new sap.ui.model.Sorter("CategoryID", false, function(oContext) {
+      const oSorter = new Sorter("CategoryID", false, function(oContext) {
         const iCategoryID = oContext.getProperty("CategoryID");
-
-        // ID'ye göre CategoryName bul
         const oCategory = aCategories.find(cat => cat.CategoryID === iCategoryID);
-        const sCategoryName = oCategory ? oCategory.CategoryName : "Unknown";
+        return oCategory ? oCategory.CategoryName : "Unknown";
+      });
 
-        return sCategoryName; 
-    });
+      oBinding.sort(oSorter);
+    },
 
-    oBinding.sort(oSorter);
-},     onExportToExcel: function() {
-    var oModel = this.getOwnerComponent().getModel();
-    oModel.read("/Products", {
+    onExportToExcel: function() {
+      const oModel = this.getOwnerComponent().getModel();
+      const i18n = this.getView().getModel("i18n");
+
+      oModel.read("/Products", {
         success: function(oData) {
-            var aData = oData.results;
+          const aData = oData.results;
+          if (!aData || !aData.length) {
+            MessageToast.show(i18n.getProperty("msgNoDataExport"));
+            return;
+          }
 
-            if (!aData || !aData.length) {
-                sap.m.MessageToast.show("Export için veri yok!");
-                return;
-            }
+          const aCols = [
+            { label: i18n.getProperty("colProductName"), property: "ProductName" },
+            { label: i18n.getProperty("colQuantityPerUnit"), property: "QuantityPerUnit" },
+            { label: i18n.getProperty("colUnitPrice"), property: "UnitPrice" },
+            { label: i18n.getProperty("colUnitsInStock"), property: "UnitsInStock" }
+          ];
 
-            // Kolonları tanımla
-            var aCols = [
-                { label: "Product Name", property: "ProductName" },
-                { label: "Quantity per Unit", property: "QuantityPerUnit" },
-                { label: "Unit Price", property: "UnitPrice" },
-                { label: "Units In Stock", property: "UnitsInStock" }
-            ];
+          const oSettings = {
+            workbook: { columns: aCols },
+            dataSource: aData,
+            fileName: "Products.xlsx"
+          };
 
-
-            var oSettings = {
-                workbook: {
-                    columns: aCols
-                },
-                dataSource: aData,
-                fileName: "Products.xlsx"
-            };
-
-
-            var oSpreadsheet = new sap.ui.export.Spreadsheet(oSettings);
-            oSpreadsheet.build()
-                .then(function() {
-                    sap.m.MessageToast.show("Excel dosyası oluşturuldu!");
-                })
-                .finally(function() {
-                    oSpreadsheet.destroy();
-                });
+          const oSpreadsheet = new Spreadsheet(oSettings);
+          oSpreadsheet.build()
+            .then(function() {
+              MessageToast.show(i18n.getProperty("msgExcelCreated"));
+            })
+            .finally(function() {
+              oSpreadsheet.destroy();
+            });
 
         },
         error: function(oError) {
-            console.error("Ürünler yüklenemedi:", oError);
-            sap.m.MessageToast.show("Ürünler yüklenemedi!");
+          console.error(i18n.getProperty("errProductsLoad"), oError);
+          MessageToast.show(i18n.getProperty("errProductsLoad"));
         }
-    });
-}
-,
+      });
+    },
 
-   onItemPress: function(oEvent) {
-    // Tıklanan item'ı al
-    const oItem = oEvent.getSource();
-    const oCtx = oItem.getBindingContext(); // item'ın context'i
-    const sProductID = oCtx.getProperty("ProductID"); // ProductID al
+    onItemPress: function(oEvent) {
+      const oItem = oEvent.getSource();
+      const oCtx = oItem.getBindingContext();
+      const sProductID = oCtx.getProperty("ProductID");
 
-    // Router ile detay view'e git
-    const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-    oRouter.navTo("DetailView", {
-        ProductID: sProductID
-    });
-}
-
-
-
-
+      const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+      oRouter.navTo("DetailView", { ProductID: sProductID });
+    }
   });
 });

@@ -55,7 +55,7 @@
                         <Label id="_IDGenLabel32" text="{i18n>labelForCategory2}" design="Bold" />
                         <Input id="_IDGenText33" value="{Category/Description}" class="sapUiSmallMarginBegin"  editable="false"/>
                         <Label id="_IDGenLabel33" text="{i18n>labelForCategoryFragment}" design="Bold"></Label>
-                        <Button id="_IDGenButton2" press="onOpenPictureFragment" text="Show"  class="sapUiSmallMarginBegin"></Button>
+                        <Button id="_IDGenButton2" press="onOpenPictureFragment" text="{i18n>show}"  class="sapUiSmallMarginBegin"></Button>
                     </layout:SimpleForm>
                     <!-- supplier özellikleri -->
                     <Title id="_IDGenTitle1" text="{i18n>detailHeader3}" level="H2" class="myTitlePadding"/>

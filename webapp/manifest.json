@@ -63,6 +63,13 @@
           "bundleName": "project2.i18n.i18n"
         }
       },
+      "i18n_tr": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+            "bundleName": "project2.i18n.i18n_tr"
+        }
+      }
+,
       "Users": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/Users.json"

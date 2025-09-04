@@ -4,66 +4,65 @@
     xmlns="sap.m"
     xmlns:layout="sap.ui.layout.form">
 
-    <Page id="employeeDetailPage" title="Employee Detail" showNavButton="true" navButtonPress="onNavBack">
+    <Page id="employeeDetailPage" title="{i18n>employeeDetailHeader}" showNavButton="true" navButtonPress="onNavBack">
         <content>
-            <Title id="_IDGenTitle2" text="General Information" level="H2" class="myTitlePadding"/>
+            <Title id="_IDGenTitle2" text="{i18n>generalInfo}" level="H2" class="myTitlePadding"/>
             <layout:SimpleForm id="_IDGenSimpleForm" editable="false" columnsL="2" columnsM="2" labelSpanM="1" labelSpanL="1">
                 
-                <Label id="_IDGenLabel11" text="Employee ID" design="Bold"/>
+                <Label id="_IDGenLabel11" text="{i18n>employeeId}" design="Bold"/>
                 <Input id="_IDGenInput" value="{EmployeeID}" editable="false"/>
 
-                <Label id="_IDGenLabel16" text="First Name" design="Bold"/>
+                <Label id="_IDGenLabel16" text="{i18n>firstName}" design="Bold"/>
                 <Input id="_IDGenInput1" value="{FirstName}" editable="false"/>
 
-                <Label id="_IDGenLabel20" text="Last Name" design="Bold"/>
+                <Label id="_IDGenLabel20" text="{i18n>lastName}" design="Bold"/>
                 <Input id="_IDGenInput2" value="{LastName}" editable="false"/>
 
-                <Label id="_IDGenLabel21" text="Title" design="Bold"/>
+                <Label id="_IDGenLabel21" text="{i18n>title}" design="Bold"/>
                 <Input id="_IDGenInput3" value="{Title}" editable="false"/>
 
-                <Label id="_IDGenLabel22" text="Title Of Courtesy" design="Bold"/>
+                <Label id="_IDGenLabel22" text="{i18n>titleOfCourtesy}" design="Bold"/>
                 <Input id="_IDGenInput4" value="{TitleOfCourtesy}" editable="false"/>
 
-                <Label id="_IDGenLabel23" text="Birth Date" design="Bold"/>
+                <Label id="_IDGenLabel23" text="{i18n>birthDate}" design="Bold"/>
                 <Input id="_IDGenInput5" value="{BirthDate}" editable="false"/>
 
-                <Label id="_IDGenLabel24" text="Hire Date" design="Bold"/>
+                <Label id="_IDGenLabel24" text="{i18n>hireDate}" design="Bold"/>
                 <Input id="_IDGenInput6" value="{HireDate}" editable="false"/>
-
             </layout:SimpleForm>
 
-            <Title id="_IDGenTitle4" text="Address Information" level="H2" class="myTitlePadding"/>
+            <Title id="_IDGenTitle4" text="{i18n>addressInfo}" level="H2" class="myTitlePadding"/>
             <layout:SimpleForm id="_IDGenSimpleForm1" editable="false" columnsL="2" columnsM="2" labelSpanM="1" labelSpanL="1">
 
-                <Label id="_IDGenLabel25" text="Address" design="Bold"/>
+                <Label id="_IDGenLabel25" text="{i18n>address}" design="Bold"/>
                 <Input id="_IDGenInput7" value="{Address}" editable="false"/>
 
-                <Label id="_IDGenLabel26" text="City" design="Bold"/>
+                <Label id="_IDGenLabel26" text="{i18n>city}" design="Bold"/>
                 <Input id="_IDGenInput8" value="{City}" editable="false"/>
 
-                <Label id="_IDGenLabel323" text="Show Picture" design="Bold"></Label>
-                <Button id="_IDGenButton222" press="onOpenPictureFragment" text="Show"  class="sapUiSmallMarginBegin"></Button>
+                <Label id="_IDGenLabel323" text="{i18n>showPicture}" design="Bold"/>
+                <Button id="_IDGenButton222" press="onOpenPictureFragment" text="{i18n>show}" class="sapUiSmallMarginBegin"></Button>
 
-                <Label id="_IDGenLabel27" text="Region" design="Bold"/>
+                <Label id="_IDGenLabel27" text="{i18n>region}" design="Bold"/>
                 <Input id="_IDGenInput9" value="{Region}" editable="false"/>
 
-                <Label id="_IDGenLabel28" text="Postal Code" design="Bold"/>
+                <Label id="_IDGenLabel28" text="{i18n>postalCode}" design="Bold"/>
                 <Input id="_IDGenInput10" value="{PostalCode}" editable="false"/>
 
-                <Label id="_IDGenLabel29" text="Country" design="Bold"/>
+                <Label id="_IDGenLabel29" text="{i18n>country}" design="Bold"/>
                 <Input id="_IDGenInput11" value="{Country}" editable="false"/>
             </layout:SimpleForm>
 
-            <Title id="_IDGenTitle5" text="Contact Information" level="H2" class="myTitlePadding"/>
+            <Title id="_IDGenTitle5" text="{i18n>contactInfo}" level="H2" class="myTitlePadding"/>
             <layout:SimpleForm id="_IDGenSimpleForm2" editable="false" columnsL="2" columnsM="2" labelSpanM="1" labelSpanL="1">
 
-                <Label id="_IDGenLabel30" text="Home Phone" design="Bold"/>
+                <Label id="_IDGenLabel30" text="{i18n>homePhone}" design="Bold"/>
                 <Input id="_IDGenInput12" value="{HomePhone}" editable="false"/>
 
-                <Label id="_IDGenLabel31" text="Extension" design="Bold"/>
+                <Label id="_IDGenLabel31" text="{i18n>extension}" design="Bold"/>
                 <Input id="_IDGenInput13" value="{Extension}" editable="false"/>
 
-                <Label id="_IDGenLabel34" text="Notes" design="Bold"/>
+                <Label id="_IDGenLabel34" text="{i18n>notes}" design="Bold"/>
                 <Text id="_IDGenText10" text="{Notes}" class="sapUiSmallMarginBegin"/>
             </layout:SimpleForm>
         </content>
