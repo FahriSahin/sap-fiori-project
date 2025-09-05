@@ -18,33 +18,54 @@
           id="usernameInput"
           placeholder="{i18n>usernamePlaceholder}"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
-          width="300px" />
+          width="300px"
+          visible="{= !${login>/isLoggedIn} }" />
 
         <Input
           id="passwordInput"
           placeholder="{i18n>passwordPlaceholder}"
           type="Password"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
-          width="300px" />
+          width="300px"
+          visible="{= !${login>/isLoggedIn} }" />
 
         <Button id="_IDGenButton5"
           text="{i18n>loginButton}"
           class="sapUiMediumMarginBottom sapUiLargeHeight"
           width="300px"
-          press=".onLogin" />
+          press=".onLogin"
+          visible="{= !${login>/isLoggedIn} }" />
 
         <Button id="_IDGenButton6"
           text="{i18n>goToRegisterButton}"
           type="Emphasized"
           class="sapUiLargeHeight"
           width="300px"
-          press=".onGoToRegister" />
+          press=".onGoToRegister"
+          visible="{= !${login>/isLoggedIn} }" />
 
-          <Select id="languageSelect" change=".onLanguageChange" width="300px" class="sapUiMediumMarginBottom">
-              <core:Item id="_IDGenItem5" key="en" text="English"/>
-              <core:Item id="_IDGenItem6" key="tr" text="Türkçe"/>
-          </Select>
+        <Select id="languageSelect"
+          change=".onLanguageChange"
+          width="300px"
+          class="sapUiMediumMarginBottom"
+          visible="{= !${login>/isLoggedIn} }">
+          <core:Item id="_IDGenItem5" key="en" text="English"/>
+          <core:Item id="_IDGenItem6" key="tr" text="Türkçe"/>
+        </Select>
 
+        <CheckBox
+        id="rememberMeCheckBox"
+        text="Remember Me"
+        selected="true" />
+
+        <!-- ✅ Logout Butonu -->
+        <Button id="_IDGenButton9"
+          text="{i18n>logoutButton}"
+          type="Reject"
+          class="sapUiLargeHeight sapUiMediumMarginTop"
+          width="300px"
+          press=".onLogout"
+          visible="{login>/isLoggedIn}" />
 
       </VBox>
     </content>
