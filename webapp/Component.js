@@ -28,21 +28,25 @@ sap.ui.define([
                 this.setModel(oLoginModel, "login");
             }
 
-            // Router
             const oRouter = this.getRouter();
-            oRouter.initialize();
 
             // Route guard
             oRouter.attachBeforeRouteMatched((oEvent) => {
                 const bLoggedIn = this.getModel("login").getProperty("/isLoggedIn");
                 const sRouteName = oEvent.getParameter("name");
 
-                // Eğer login değilse ve route Login/Register değilse yönlendir
+                // Login veya Register değilse ve giriş yapılmamışsa yönlendir
                 if (!bLoggedIn && sRouteName !== "Login" && sRouteName !== "Register") {
-                    oEvent.preventDefault(); // route değişimini durdur
-                    oRouter.navTo("Login");
+                    oEvent.preventDefault();
+                    // setTimeout ile navTo yap, replace ile history temizle
+                    setTimeout(() => {
+                        oRouter.navTo("Login", {}, true);
+                    }, 0);
                 }
             });
+
+            // Router'ı initialize et
+            oRouter.initialize();
         }
     });
 });

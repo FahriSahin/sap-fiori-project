@@ -10,29 +10,35 @@ sap.ui.define([
 
   return Controller.extend("project2.controller.View1", {
     onInit: function() {
+      const oView = this.getView();
       const oModel = this.getOwnerComponent().getModel(); 
-      this.getView().setModel(oModel); // Products modeli
+      oView.setModel(oModel); // Products modeli
 
-      const i18n = this.getView().getModel("i18n");
+      // i18n modelini component üzerinden al
+      const i18n = this.getOwnerComponent().getModel("i18n");
+      if (!i18n) {
+        console.error("i18n modeli bulunamadı!");
+        return;
+      }
 
       // Products
       oModel.read("/Products", {
-        success: function(oData) {
+        success: (oData) => {
           console.log(i18n.getProperty("logProducts"), oData.results);
         },
-        error: function(oError) {
+        error: (oError) => {
           console.error(i18n.getProperty("errProductsLoad"), oError);
         }
       });
 
       // Categories
       oModel.read("/Categories", {
-        success: function(oData) {
+        success: (oData) => {
           console.log(i18n.getProperty("logCategories"), oData.results);
           const oCategoryModel = new sap.ui.model.json.JSONModel(oData);
-          this.getView().setModel(oCategoryModel, "categories");
-        }.bind(this),
-        error: function(oError) {
+          oView.setModel(oCategoryModel, "categories");
+        },
+        error: (oError) => {
           console.error(i18n.getProperty("errCategoriesLoad"), oError);
         }
       });
@@ -69,7 +75,8 @@ sap.ui.define([
       const oList = this.byId("productList");
       const oBinding = oList.getBinding("items");
       const oCategoryModel = this.getView().getModel("categories"); 
-      const aCategories = oCategoryModel.getData().results;
+      if (!oCategoryModel) return; // categories modeli yoksa hata verme
+      const aCategories = oCategoryModel.getData().results || [];
 
       const oSorter = new Sorter("CategoryID", false, function(oContext) {
         const iCategoryID = oContext.getProperty("CategoryID");
@@ -82,10 +89,10 @@ sap.ui.define([
 
     onExportToExcel: function() {
       const oModel = this.getOwnerComponent().getModel();
-      const i18n = this.getView().getModel("i18n");
+      const i18n = this.getOwnerComponent().getModel("i18n");
 
       oModel.read("/Products", {
-        success: function(oData) {
+        success: (oData) => {
           const aData = oData.results;
           if (!aData || !aData.length) {
             MessageToast.show(i18n.getProperty("msgNoDataExport"));
@@ -107,15 +114,15 @@ sap.ui.define([
 
           const oSpreadsheet = new Spreadsheet(oSettings);
           oSpreadsheet.build()
-            .then(function() {
+            .then(() => {
               MessageToast.show(i18n.getProperty("msgExcelCreated"));
             })
-            .finally(function() {
+            .finally(() => {
               oSpreadsheet.destroy();
             });
 
         },
-        error: function(oError) {
+        error: (oError) => {
           console.error(i18n.getProperty("errProductsLoad"), oError);
           MessageToast.show(i18n.getProperty("errProductsLoad"));
         }

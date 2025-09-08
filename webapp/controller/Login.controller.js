@@ -7,7 +7,7 @@ sap.ui.define([
     return Controller.extend("project2.controller.Login", {
 
         onInit: function() {
-            // Default admin kullanıcı
+            // Default admin kullanıcı ekle
             if (!localStorage.getItem("Users")) {
                 const defaultUsers = [{ username: "admin", password: "1234" }];
                 localStorage.setItem("Users", JSON.stringify(defaultUsers));
@@ -33,12 +33,14 @@ sap.ui.define([
                     sessionStorage.setItem("username", sUsername);
                 }
 
-                oLoginModel.setProperty("/isLoggedIn", true);
+                if (oLoginModel) {
+                    oLoginModel.setProperty("/isLoggedIn", true);
+                }
 
-                MessageToast.show(this.getView().getModel("i18n").getProperty("loginSuccess"));
+                MessageToast.show(this.getOwnerComponent().getModel("i18n").getProperty("loginSuccess"));
                 this.getOwnerComponent().getRouter().navTo("Main");
             } else {
-                MessageToast.show(this.getView().getModel("i18n").getProperty("loginFailed"));
+                MessageToast.show(this.getOwnerComponent().getModel("i18n").getProperty("loginFailed"));
             }
         },
 
@@ -48,12 +50,11 @@ sap.ui.define([
 
         onLanguageChange: function(oEvent) {
             const sSelectedKey = oEvent.getParameter("selectedItem").getKey();
-            const oView = this.getView();
 
             if (sSelectedKey === "tr") {
-                oView.setModel(this.getOwnerComponent().getModel("i18n_tr"), "i18n");
+                this.getOwnerComponent().setModel(this.getOwnerComponent().getModel("i18n_tr"), "i18n");
             } else {
-                oView.setModel(this.getOwnerComponent().getModel("i18n"), "i18n");
+                this.getOwnerComponent().setModel(this.getOwnerComponent().getModel("i18n"), "i18n");
             }
         },
 
@@ -64,10 +65,13 @@ sap.ui.define([
             sessionStorage.removeItem("isLoggedIn");
             sessionStorage.removeItem("username");
 
-            this.getOwnerComponent().getModel("login").setProperty("/isLoggedIn", false);
+            const oLoginModel = this.getOwnerComponent().getModel("login");
+            if (oLoginModel) {
+                oLoginModel.setProperty("/isLoggedIn", false);
+            }
 
             this.getOwnerComponent().getRouter().navTo("Login");
-            MessageToast.show(this.getView().getModel("i18n").getProperty("logoutSuccess") || "Logged out");
+            MessageToast.show(this.getOwnerComponent().getModel("i18n").getProperty("logoutSuccess") || "Logged out");
         }
     });
 });
